@@ -1,0 +1,46 @@
+<% include ./partials/header %>
+    <div class="row">
+        <h1 style="text-align: center">Sign Up</h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/register" method="post">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input class="form-control" type="text" name="username"  id="username">
+                </div>
+                <div class="form-group " id="submit">
+                    <label for="password">Password</label>
+                    <input class="form-control" type="password" name="password" id="password">
+                    <script>
+                        document.querySelector("#submit").addEventListener("click",function(){
+                            alert("You can't change your password in future. So Better Remember it.")
+                            flash("error", "You don't have permission to do that");
+                        });
+                    </script>
+                </div>
+                <div class="form-group">
+                    <label for="first">First Name</label>
+                    <input class="form-control" type="text" name="firstName" id="first">
+                </div>
+                <div class="form-group">
+                    <label for="last">Last Name</label>
+                    <input class="form-control" type="text" name="lastName"  id="last">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Id</label>
+                    <input class="form-control" type="text" name="email"  id="email">
+                </div>
+                <!--<div class="form-group">-->
+                    <!--<input class="form-control" type="text" name="avatar" placeholder="Profile Picture URL">-->
+                <!--</div>-->
+                <div class="form-group">
+                    <label for="admin">Admin Code (Only for Admin!)</label>
+                    <input class="form-control" type="password" name="adminCode"  id="admin">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Sign Up!</button>
+                </div>
+            </form>
+            <a href="/movies">Go Back</a>
+        </div>
+    </div>
+<% include ./partials/footer %>

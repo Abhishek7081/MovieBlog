@@ -1,0 +1,63 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row">
+        <!--<div class="col-md-3">-->
+        <!--    <p class="lead">Movie Transaction</p>-->
+        <!--    <div class="list-group">-->
+        <!--        <li class="list-group-item active">Info 1</li>-->
+        <!--        <li class="list-group-item">Info 2</li>-->
+        <!--        <li class="list-group-item">Info 3</li>-->
+        <!--    </div>-->
+        <!--</div>-->
+        <div class="col-md-12">
+            <div class="thumbnail">
+                <h1 class="text-center"><%=movie.name%></h1>
+
+                <h3><strong>Genre: <em><%= movie.genre %></em></strong></h3>
+                <img class="img-responsive" src="<%= movie.image %>">
+                <div class="caption-full">
+                    <h4><a href="<%=movie.link%>">Download Link</a></h4>
+                    <p><%- movie.description %></p>
+                    <p>
+                        <em>Submitted By:<a href="/users/<%=movie.author.id%>"><h3> <%= movie.author.username %></h3> </a></em>
+                    </p>
+                    <% if((currentUser && movie.author.id.equals(currentUser._id)) || (currentUser && currentUser.isAdmin)){ %>
+                        <a class="btn btn-xs btn-warning" href="/movies/<%= movie._id %>/edit">Edit</a>
+                        <form id="delete-form" action="/movies/<%= movie._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-xs btn-danger">Delete</button>
+                        </form>
+                    <% }%>
+                    <!--<button class="pull-right" class="btn btn-xs btn-warning">Clap</button>-->
+                    <span class="pull-right"><a href="#"><i class="fa fa-star-o"></i>1</a></span>
+                    <!--<span class="pull-right"><i class="far fa-heart"></i>Appreciate</span>-->
+                </div>
+            </div>
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success" href="/movies/<%= movie._id %>/comments/new">Add New Comment</a>
+                </div>
+                <hr>
+                <% movie.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= comment.author.username %></strong>
+                            <span class="pull-right">10 days ago</span>
+                            <p>
+                                <%- comment.text %>
+                            </p>
+                        <% if((currentUser && comment.author.id.equals(currentUser._id)) || (currentUser && currentUser.isAdmin)){ %>
+                            <a class="btn btn-xs btn-warning"
+                               href="/movies/<%=movie._id %>/comments/<%=comment._id %>/edit">Edit</a>
+                            <form id="delete-form" action="/movies/<%=movie._id %>/comments/<%=comment._id %>?_method=DELETE" method="POST">
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                        <% } %>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,37 @@
+<% include ../partials/header %>
+  <div class="row">
+      <div class="col-md-4">
+          <h1><%=user.firstName + " " + user.lastName %></h1>
+          <div class="thumbnail">
+              <img src="<%=user.avatar%>" alt="user profile image">
+              <div class="caption">
+                  <a href="mailto:<%=user.email %>"><%=user.email%></a>
+              </div>
+          </div>
+          <h3>Bio</h3>
+           <p><strong><%=user.bio%></strong></p>
+
+            <a class="btn btn-xs btn-warning" id="mistake" href="/users/<%= user._id %>/edit">Edit Details</a>
+            // <script>
+            //             document.querySelector("#mistake").addEventListener("click",function(){
+            //                 alert("You can't edit someone's profile.")
+            //             });
+            // </script>
+
+
+
+
+
+      </div>
+      <div class="col-md-8">
+          <h3><%=user.username %>'s contributions : </h3>
+          <ul>
+              <% movies.forEach(function(movie){ %>
+                  <li><a href="/movies/<%=movie.id%>"><%=movie.name%></a></li>
+              <% }) %>
+          </ul>
+
+
+      </div>
+  </div>
+<% include ../partials/footer %>
