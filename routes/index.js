@@ -50,10 +50,13 @@ router.get("/login", function(req, res){
 router.post("/login", passport.authenticate("local",
     {
         successRedirect: "/movies",
-        failureRedirect: "/login"
+        failureRedirect: "/register",
+        badRequestMessage: "You must fill in all of the form fields.",
     }), function(req, res){
 });
 
+
+              
 // logout route
 router.get("/logout", function(req, res){
    req.logout();

@@ -1,4 +1,6 @@
 # A Movie Blog
-
-<h2> Exploring how <strong>CRUD</strong> system works</h2>
-<h4> Just trying to utilise the rest functionality  </h4>
+<h5>A full stack responsive web app to blog about your movies</h5>
+<h5>Implemented CRUD functionality using RESTful routing</h5>
+<h5>Features: users’ control over their profile, posts and comments,
+middlewares for authentication and authorization,
+administrator’s access, search movies based on genres.</h5>
