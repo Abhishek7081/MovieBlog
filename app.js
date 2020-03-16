@@ -48,7 +48,8 @@ app.use("/", indexRoutes);
 app.use("/movies", movieRoutes);
 app.use("/movies/:id/comments", commentRoutes);
 
-app.listen(8000, function(){
+var port = process.env.PORT || 8000;
+app.listen(port, function(){
    console.log("The Movie Server Has Started!");
 });
 // http.createServer(app).listen(app.get('port', function(){
